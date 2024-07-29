@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CustomInput from "../../Components/CustomInput/CustomInput";
 import CustomButton from "../../Components/CustomButton/CustomButton";
+import signupUser from "../../api/services/signupUser";
 import style from "./SignUp.module.css";
-import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const navigation = useNavigate();
@@ -12,7 +13,8 @@ const SignUp = () => {
 
   const handleSubmitForm = (e, username, email, password) => {
     e.preventDefault();
-    console.log({ username, email, password });
+
+    signupUser(username, email, password);
   };
   return (
     <div className={style.body}>
