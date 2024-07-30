@@ -1,8 +1,4 @@
-import UseUserContext from "../Hooks/UseUserContext";
-
-const updateUserContext = (token) => {
-  const { setUserInfo } = UseUserContext();
-
+const updateUserContext = (setUserInfo, token) => {
   setUserInfo((prevState) => {
     return {
       ...prevState,

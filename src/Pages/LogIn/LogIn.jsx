@@ -4,10 +4,12 @@ import style from "../SignUp/SignUp.module.css";
 import CustomButton from "../../Components/CustomButton/CustomButton";
 import CustomInput from "../../Components/CustomInput/CustomInput";
 import loginUser from "../../api/services/loginUser";
+import UseUserContext from "../../Hooks/UseUserContext";
 import updateUserContext from "../../utils/updateUserContext";
 
 const LogIn = () => {
   const navigation = useNavigate();
+  const { setUserInfo } = UseUserContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,7 +18,7 @@ const LogIn = () => {
 
     try {
       const response = await loginUser(email, inputPassword);
-      updateUserContext(response.data);
+      updateUserContext(setUserInfo, response.data);
       navigation("/");
     } catch (err) {
       console.log(err);
