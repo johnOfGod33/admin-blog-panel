@@ -2,15 +2,17 @@ import { basicAxios } from "../config/axios";
 
 const signupUser = async (username, email, password) => {
   try {
-    let response = await basicAxios.post("/users/signup", {
+    const response = await basicAxios.post("/users/signup", {
       username,
       email,
       password,
     });
 
-    console.log(response);
+    console.log("user created");
+
+    return response;
   } catch (err) {
-    console.log(err);
+    throw err;
   }
 };
 

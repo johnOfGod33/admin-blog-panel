@@ -11,11 +11,17 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmitForm = (e, username, email, password) => {
+  const handleSubmitForm = async (e, username, email, password) => {
     e.preventDefault();
 
-    signupUser(username, email, password);
+    try {
+      await signupUser(username, email, password);
+      navigation("/login");
+    } catch (err) {
+      console.log(err);
+    }
   };
+
   return (
     <div className={style.body}>
       <div className={style.container}>
