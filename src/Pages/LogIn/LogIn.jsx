@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import style from "../SignUp/SignUp.module.css";
 import CustomButton from "../../Components/CustomButton/CustomButton";
 import CustomInput from "../../Components/CustomInput/CustomInput";
-import { useNavigate } from "react-router-dom";
 import loginUser from "../../api/services/loginUser";
+import updateUserContext from "../../utils/updateUserContext";
 
 const LogIn = () => {
   const navigation = useNavigate();
@@ -14,7 +15,8 @@ const LogIn = () => {
     e.preventDefault();
 
     try {
-      await loginUser(email, inputPassword);
+      const response = await loginUser(email, inputPassword);
+      updateUserContext(response.data);
       navigation("/");
     } catch (err) {
       console.log(err);
