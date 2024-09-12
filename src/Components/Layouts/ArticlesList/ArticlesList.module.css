@@ -1,0 +1,32 @@
+.article {
+  height: 10vh;
+  width: 100%;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 2.5fr 0.5fr;
+  grid-template-rows: 1fr;
+}
+.article h4 {
+  font-size: 16px;
+}
+.article div {
+  display: flex;
+  align-items: center;
+}
+.article button {
+  background-color: #fff;
+  border: none;
+  font-size: 15px;
+  font-style: italic;
+  font-weight: bold;
+  cursor: pointer;
+}
+.article_buttons {
+  justify-content: space-between;
+}
+.article_buttons_edit {
+  color: blue;
+}
+.article_buttons_delete {
+  color: red;
+}
