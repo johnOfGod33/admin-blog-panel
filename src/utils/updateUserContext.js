@@ -1,8 +1,9 @@
-const updateUserContext = (setUserInfo, token) => {
+const updateUserContext = (setUserInfo, token, email) => {
   setUserInfo((prevState) => {
     return {
       ...prevState,
       accessToken: token,
+      email,
     };
   });
 };

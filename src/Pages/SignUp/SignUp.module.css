@@ -22,8 +22,12 @@ form {
 }
 
 .container {
-  height: 60%;
-  width: 80%;
+  min-height: 50vh;
+  max-height: 100vh;
+  min-width: 40vw;
+  max-width: 80vw;
+  height: auto;
+  width: auto;
   border-radius: 10px;
   border: 1px solid black;
   background: transparent;
