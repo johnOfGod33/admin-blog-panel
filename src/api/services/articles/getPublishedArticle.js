@@ -6,7 +6,7 @@ const getPublishedArticle = async (email, setArticleList) => {
       `articles/getPublishedArticles/${email}`
     );
 
-    setArticleList(response.data);
+    setArticleList(response.data.articles);
   } catch (err) {
     throw err;
   }

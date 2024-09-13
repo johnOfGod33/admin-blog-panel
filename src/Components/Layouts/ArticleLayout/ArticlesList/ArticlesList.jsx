@@ -7,7 +7,7 @@ const ArticlesList = ({ articleList, setTrigger }) => {
   const privateAxios = UsePrivateAxios();
   return (
     <>
-      {articleList ? (
+      {articleList.length > 0 ? (
         articleList.map((article) => (
           <div className={style.article} key={article._id}>
             <div className={style.article_title}>
@@ -27,7 +27,7 @@ const ArticlesList = ({ articleList, setTrigger }) => {
           </div>
         ))
       ) : (
-        <div>no articles</div>
+        <div className={style.article}>no articles</div>
       )}
     </>
   );
