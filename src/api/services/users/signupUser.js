@@ -1,4 +1,4 @@
-import { basicAxios } from "../config/axios";
+import { basicAxios } from "../../config/axios";
 
 const signupUser = async (username, email, password) => {
   try {

@@ -1,4 +1,4 @@
-import { basicAxios } from "../config/axios";
+import { basicAxios } from "../../config/axios";
 
 const loginUser = async (email, inputPassword) => {
   try {

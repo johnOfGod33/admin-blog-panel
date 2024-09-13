@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomInput from "../../Components/CustomInput/CustomInput";
 import CustomButton from "../../Components/CustomButton/CustomButton";
-import signupUser from "../../api/services/signupUser";
+import signupUser from "../../api/services/users/signupUser";
 import style from "./SignUp.module.css";
 
 const SignUp = () => {

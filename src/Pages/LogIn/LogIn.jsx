@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import style from "../SignUp/SignUp.module.css";
 import CustomButton from "../../Components/CustomButton/CustomButton";
 import CustomInput from "../../Components/CustomInput/CustomInput";
-import loginUser from "../../api/services/loginUser";
+import loginUser from "../../api/services/users/loginUser";
 import UseUserContext from "../../Hooks/UseUserContext";
 import updateUserContext from "../../utils/updateUserContext";
 
@@ -18,7 +18,7 @@ const LogIn = () => {
 
     try {
       const response = await loginUser(email, inputPassword);
-      updateUserContext(setUserInfo, response.data);
+      updateUserContext(setUserInfo, response.data, email);
       navigation("/");
     } catch (err) {
       console.log(err);
