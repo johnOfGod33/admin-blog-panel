@@ -1,35 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CustomButtom from "../../Components/CustomButton/CustomButton";
 import style from "./Articles.module.css";
-import ArticlesList from "../../Components/Layouts/ArticlesList/ArticlesList";
-
+import ArticlesList from "../../Components/Layouts/ArticleLayout/ArticlesList/ArticlesList";
+import Filter from "../../Components/Layouts/ArticleLayout/Filter/Filter";
+import UseUserContext from "../../Hooks/UseUserContext";
+import getPublishedArticle from "../../api/services/articles/getPublishedArticle";
 const Articles = () => {
-  const [articleList, setArticleList] = useState([
-    {
-      key: 1,
-      title: "my first article",
-    },
-    {
-      key: 2,
-      title: "my second article",
-    },
-    {
-      key: 3,
-      title: "my third article",
-    },
-    {
-      key: 4,
-      title: "my fourth article",
-    },
-    {
-      key: 5,
-      title: "my fifth article",
-    },
-    {
-      key: 6,
-      title: "my six article",
-    },
-  ]);
+  const { userInfo } = UseUserContext();
+
+  const [articleList, setArticleList] = useState([]);
+
+  const [filter, setFilter] = useState("publish");
+
+  useEffect(() => {
+    (async () => {
+      await getPublishedArticle(userInfo.email, setArticleList);
+    })();
+  }, [filter]);
+
   return (
     <div className={style.container}>
       <section className={style.header}>
@@ -40,8 +28,13 @@ const Articles = () => {
           <CustomButtom type={"button"}>+ Add</CustomButtom>
         </div>
       </section>
-      <section className={style.articleList}>
-        <ArticlesList articleList={articleList} />
+      <section className={style.main}>
+        <section className={style.filter}>
+          <Filter filter={filter} setFilter={setFilter} />
+        </section>
+        <section className={style.articleList}>
+          <ArticlesList articleList={articleList} />
+        </section>
       </section>
     </div>
   );
