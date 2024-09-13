@@ -25,10 +25,10 @@ const SignUp = () => {
   return (
     <div className={style.body}>
       <div className={style.container}>
-        <section className={style.title}>
+        <section>
           <h3>Sign Up</h3>
         </section>
-        <section className={style.description}>
+        <section>
           <p>Complete the form and create your account</p>
         </section>
         <section className={style.form}>
