@@ -5,7 +5,10 @@ import ArticlesList from "../../Components/Layouts/ArticleLayout/ArticlesList/Ar
 import Filter from "../../Components/Layouts/ArticleLayout/Filter/Filter";
 import UseUserContext from "../../Hooks/UseUserContext";
 import getPublishedArticle from "../../api/services/articles/getPublishedArticle";
+import UsePrivateAxios from "../../Hooks/UsePrivateAxios";
+import getDraftArticles from "../../api/services/articles/getDraftArticles";
 const Articles = () => {
+  const privateAxios = UsePrivateAxios();
   const { userInfo } = UseUserContext();
 
   const [articleList, setArticleList] = useState([]);
@@ -14,7 +17,10 @@ const Articles = () => {
 
   useEffect(() => {
     (async () => {
-      await getPublishedArticle(userInfo.email, setArticleList);
+      if (filter === "publish") {
+        await getPublishedArticle(userInfo.email, setArticleList);
+      } else if (filter === "draft")
+        await getDraftArticles(privateAxios, setArticleList);
     })();
   }, [filter]);
 
