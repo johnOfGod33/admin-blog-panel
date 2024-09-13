@@ -5,13 +5,13 @@ const Filter = ({ filter, setFilter }) => {
   return (
     <div className={style.container}>
       <div
-        className={filter === "publish" && style.focus}
+        className={filter === "publish" ? style.focus : "false"}
         onClick={() => setFilter("publish")}
       >
         Published
       </div>
       <div
-        className={filter === "draft" && style.focus}
+        className={filter === "draft" ? style.focus : "false"}
         onClick={() => setFilter("draft")}
       >
         Draft

@@ -10,9 +10,8 @@ import getDraftArticles from "../../api/services/articles/getDraftArticles";
 const Articles = () => {
   const privateAxios = UsePrivateAxios();
   const { userInfo } = UseUserContext();
-
+  const [trigger, setTrigger] = useState(false);
   const [articleList, setArticleList] = useState([]);
-
   const [filter, setFilter] = useState("publish");
 
   useEffect(() => {
@@ -22,7 +21,7 @@ const Articles = () => {
       } else if (filter === "draft")
         await getDraftArticles(privateAxios, setArticleList);
     })();
-  }, [filter]);
+  }, [filter, trigger]);
 
   return (
     <div className={style.container}>
@@ -39,7 +38,7 @@ const Articles = () => {
           <Filter filter={filter} setFilter={setFilter} />
         </section>
         <section className={style.articleList}>
-          <ArticlesList articleList={articleList} />
+          <ArticlesList articleList={articleList} setTrigger={setTrigger} />
         </section>
       </section>
     </div>
