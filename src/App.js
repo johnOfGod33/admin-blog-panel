@@ -4,6 +4,7 @@ import SignUp from "./Pages/SignUp/SignUp";
 import LogIn from "./Pages/LogIn/LogIn";
 import ProtectedRoutes from "./Components/Layouts/ProtectedRoutes";
 import Articles from "./Pages/Articles/Articles";
+import ArticleForm from "./Pages/ArticleForm/ArticleForm";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/signup" Component={SignUp} />
         <Route path="/" Component={ProtectedRoutes}>
           <Route index Component={Articles} />
+          <Route path=":action/:articleId?" Component={ArticleForm} />
         </Route>
       </Routes>
     </BrowserRouter>

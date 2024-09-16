@@ -7,7 +7,10 @@ import UseUserContext from "../../Hooks/UseUserContext";
 import getPublishedArticle from "../../api/services/articles/getPublishedArticle";
 import UsePrivateAxios from "../../Hooks/UsePrivateAxios";
 import getDraftArticles from "../../api/services/articles/getDraftArticles";
+import { useNavigate } from "react-router-dom";
+
 const Articles = () => {
+  const navigate = useNavigate();
   const privateAxios = UsePrivateAxios();
   const { userInfo } = UseUserContext();
   const [trigger, setTrigger] = useState(false);
@@ -30,7 +33,9 @@ const Articles = () => {
           <h2>Articles</h2>
         </div>
         <div className={style.header_button}>
-          <CustomButtom type={"button"}>+ Add</CustomButtom>
+          <CustomButtom type={"button"} handleClick={() => navigate("Create")}>
+            + Add
+          </CustomButtom>
         </div>
       </section>
       <section className={style.main}>
