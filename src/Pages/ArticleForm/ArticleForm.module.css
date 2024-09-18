@@ -4,11 +4,56 @@
   align-items: center;
 }
 .container section {
-  width: 80vw;
+  width: 65vw;
   height: auto;
-  margin-bottom: 10px;
+  margin-bottom: 10vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+}
+
+.form form {
+  width: 100%;
+}
+.form_title {
+  width: 100%;
+}
+.form_title input {
+  width: 100%;
+  padding: 0 4vw;
+  font-size: 34px;
+  font-weight: bold;
+  width: inherit;
+  outline: none;
+  border: none;
+  height: 10vh;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+}
+.form_editor {
+  font-size: 16px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 100%;
+  height: 50vh;
+  margin: 5vh 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+}
+.form_buttons {
+  width: 100%;
+}
+.form_buttons button {
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+.form_buttons_publish {
+  background-color: blue;
+  color: white;
 }
