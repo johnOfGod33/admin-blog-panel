@@ -23,6 +23,8 @@ const ArticleForm = () => {
             <button>Save Draft</button>
             <button>Save Change</button>
           </div>
+          <div className={style.form_editor} id="editorjs"></div>;
+          <div className={style.form_buttons}>{button()}</div>
         </form>
       </section>
     </div>
