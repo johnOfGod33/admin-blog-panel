@@ -21,16 +21,24 @@
   &_title {
     width: 100%;
     input {
-      width: 100%;
-      padding: 0 1vw;
       font-size: 34px;
       font-weight: bold;
-      width: inherit;
-      outline: none;
-      height: 10vh;
-      border: 1px solid rgba(0, 0, 0, 0.18);
-      box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
     }
+  }
+
+  &_description {
+    width: 100%;
+  }
+
+  input {
+    width: 100%;
+    padding: 0 1vw;
+    width: inherit;
+    outline: none;
+    height: 10vh;
+    margin: 2.5vh 0;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
   }
 
   &_buttons {

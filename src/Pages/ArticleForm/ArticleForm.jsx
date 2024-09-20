@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./ArticleForm.module.css";
 import { useParams } from "react-router-dom";
 import Editor from "../../Components/Layouts/ArticleFormLayout/Editor";
+import UsePrivateAxios from "../../Hooks/UsePrivateAxios";
+import createArticle from "../../api/services/articles/createArticle";
 
 const ArticleForm = () => {
   const { action, articleId } = useParams();
+  const privateAxios = UsePrivateAxios();
   const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [content, setContent] = useState("");
   const [published, setPublished] = useState(false);
 
@@ -40,10 +44,12 @@ const ArticleForm = () => {
     }
   };
 
-  const handleSubmitForm = (e) => {
+  const handleSubmitForm = async (e) => {
     e.preventDefault();
-    const article = { title, content, published };
-    console.log(article);
+
+    const article = { title, description, content, published };
+
+    await createArticle(privateAxios, article);
   };
 
   return (
@@ -59,6 +65,13 @@ const ArticleForm = () => {
               placeholder="Article title her...
               "
               onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+          <div className={style.form_description}>
+            <input
+              type="text"
+              placeholder="short description of your article here..."
+              onChange={(e) => setDescription(e.target.value)}
             />
           </div>
           <Editor value={content} setValue={setContent} />
