@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import style from "./ArticleForm.module.css";
 import { useParams } from "react-router-dom";
-import Editor from "../../Components/Layouts/ArticleFormLayout/Editor";
+import Editor from "../../Components/Layouts/ArticleFormLayout/Editor/Editor";
 import UsePrivateAxios from "../../Hooks/UsePrivateAxios";
 import createArticle from "../../api/services/articles/createArticle";
+import getArticleById from "../../api/services/articles/getArticleById";
+import updateArticle from "../../api/services/articles/updateArticle";
+import Buttons from "../../Components/Layouts/ArticleFormLayout/Buttons/Buttons";
 
 const ArticleForm = () => {
   const { action, articleId } = useParams();
@@ -12,45 +15,36 @@ const ArticleForm = () => {
   const [description, setDescription] = useState("");
   const [content, setContent] = useState("");
   const [published, setPublished] = useState(false);
+  const [articleToEdit, setArticleToEdit] = useState({});
 
-  const button = () => {
-    if (action === "Create") {
-      return (
-        <>
-          <button
-            className={style.form_buttons_publish}
-            onClick={() => setPublished(true)}
-            type="submit"
-          >
-            Publish
-          </button>
-          <button
-            className={style.form_buttons_draft}
-            onClick={() => setPublished(false)}
-            type="submit"
-          >
-            Save Draft
-          </button>
-        </>
-      );
-    } else if (action === "Edit") {
-      return (
-        <>
-          <button className={style.form_buttons_save} type="submit">
-            Save Change
-          </button>
-        </>
-      );
-    }
+  const onCreatePage = () => {
+    return action === "Create";
   };
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
 
-    const article = { title, description, content, published };
-
-    await createArticle(privateAxios, article);
+    onCreatePage()
+      ? await createArticle(privateAxios, {
+          title,
+          description,
+          content,
+          published,
+        })
+      : await updateArticle(
+          privateAxios,
+          { ...articleToEdit, title, description, content, published },
+          articleId
+        );
   };
+
+  useEffect(() => {
+    !onCreatePage() &&
+      (async () => {
+        let article = await getArticleById(articleId);
+        setArticleToEdit(article);
+      })();
+  }, []);
 
   return (
     <div className={style.container}>
@@ -64,6 +58,7 @@ const ArticleForm = () => {
               type="text"
               placeholder="Article title her...
               "
+              value={!onCreatePage() ? articleToEdit.title : title}
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
@@ -71,11 +66,19 @@ const ArticleForm = () => {
             <input
               type="text"
               placeholder="short description of your article here..."
+              value={!onCreatePage() ? articleToEdit.description : description}
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
-          <Editor value={content} setValue={setContent} />
-          <div className={style.form_buttons}>{button()}</div>
+          <Editor
+            value={onCreatePage() ? content : articleToEdit.content}
+            setValue={setContent}
+          />
+          <Buttons
+            action={action}
+            articleIsPublished={articleToEdit.published}
+            setPublished={setPublished}
+          />
         </form>
       </section>
     </div>

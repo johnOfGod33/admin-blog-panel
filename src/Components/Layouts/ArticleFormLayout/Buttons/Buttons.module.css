@@ -1,0 +1,16 @@
+.buttons {
+  width: 100%;
+}
+.buttons button {
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+.buttons_publish {
+  background-color: blue;
+  color: white;
+}
