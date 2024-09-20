@@ -1,20 +1,9 @@
-"use client";
 import React, { useState } from "react";
-import { EditorContent, EditorRoot } from "novel";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
-const Editor = () => {
-  const [content, setContent] = useState(null);
-  return (
-    <EditorRoot>
-      <EditorContent
-        initialContent={content}
-        onUpdate={({ editor }) => {
-          const json = editor.getJSON();
-          setContent(json);
-        }}
-      />
-    </EditorRoot>
-  );
+const Editor = ({ value, setValue }) => {
+  return <ReactQuill theme="snow" value={value} onChange={setValue} />;
 };
 
 export default Editor;
