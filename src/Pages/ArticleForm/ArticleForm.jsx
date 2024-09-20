@@ -7,6 +7,29 @@ const ArticleForm = () => {
   const { action, articleId } = useParams();
   const [content, setContent] = useState("");
 
+  const button = () => {
+    if (action == "Create") {
+      return (
+        <>
+          <button className={style.form_buttons_publish} type="submit">
+            Publish
+          </button>
+          <button className={style.form_buttons_draft} type="submit">
+            Save Draft
+          </button>
+        </>
+      );
+    } else if (action == "Edit") {
+      return (
+        <>
+          <button className={style.form_buttons_save} type="submit">
+            Save Change
+          </button>
+        </>
+      );
+    }
+  };
+
   return (
     <div className={style.container}>
       <section className={style.title}>
