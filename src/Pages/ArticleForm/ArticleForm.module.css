@@ -20,25 +20,13 @@
 }
 .form_title input {
   width: 100%;
-  padding: 0 4vw;
+  padding: 0 1vw;
   font-size: 34px;
   font-weight: bold;
   width: inherit;
   outline: none;
-  border: none;
   height: 10vh;
-  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
-}
-.form_editor {
-  font-size: 16px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  width: 100%;
-  height: 50vh;
-  margin: 5vh 0;
-  padding: 0;
-  border: none;
-  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.18);
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
 }
 .form_buttons {
