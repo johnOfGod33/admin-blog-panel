@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 const Articles = () => {
   const navigate = useNavigate();
   const privateAxios = UsePrivateAxios();
-  const { userInfo } = UseUserContext();
+  const { userInfo, setUserInfo } = UseUserContext();
   const [trigger, setTrigger] = useState(false);
   const [articleList, setArticleList] = useState([]);
   const [filter, setFilter] = useState("publish");
@@ -35,6 +35,10 @@ const Articles = () => {
         <div className={style.header_button}>
           <CustomButtom type={"button"} handleClick={() => navigate("Create")}>
             + Add
+          </CustomButtom>
+
+          <CustomButtom type={"button"} handleClick={() => setUserInfo({})}>
+            Log out
           </CustomButtom>
         </div>
       </section>

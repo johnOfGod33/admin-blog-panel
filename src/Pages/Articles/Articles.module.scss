@@ -11,7 +11,7 @@
   z-index: 1;
   background-color: #fff;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 0.4fr;
   grid-template-rows: 1fr;
 
   div {
@@ -22,7 +22,7 @@
     justify-content: flex-start;
   }
   &_button {
-    justify-content: flex-end;
+    justify-content: space-around;
   }
 }
 

@@ -12,7 +12,7 @@
   z-index: 1;
   background-color: #fff;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 0.4fr;
   grid-template-rows: 1fr;
 }
 .header div {
@@ -23,7 +23,7 @@
   justify-content: flex-start;
 }
 .header_button {
-  justify-content: flex-end;
+  justify-content: space-around;
 }
 
 .main {
