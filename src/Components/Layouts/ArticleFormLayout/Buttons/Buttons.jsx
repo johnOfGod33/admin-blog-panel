@@ -1,12 +1,16 @@
 import React from "react";
 import style from "./Buttons.module.css";
+import { useNavigate } from "react-router-dom";
 
 const Buttons = ({ action, articleIsPublished, setPublished }) => {
+  const navigate = useNavigate();
   const onCreatePage = () => {
     return action === "Create";
   };
 
   const button = () => {
+    const cancelButton = <button onClick={() => navigate("/")}>annulez</button>;
+
     const defaultButtons = (
       <>
         <button
@@ -23,6 +27,7 @@ const Buttons = ({ action, articleIsPublished, setPublished }) => {
         >
           Save Draft
         </button>
+        {cancelButton}
       </>
     );
 
@@ -35,6 +40,7 @@ const Buttons = ({ action, articleIsPublished, setPublished }) => {
             <button className={style.buttons_save} type="submit">
               Save Change
             </button>
+            {cancelButton}
           </>
         );
       } else {
