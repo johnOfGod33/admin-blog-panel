@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from "./ArticleForm.module.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Editor from "../../Components/Layouts/ArticleFormLayout/Editor/Editor";
 import UsePrivateAxios from "../../Hooks/UsePrivateAxios";
 import createArticle from "../../api/services/articles/createArticle";
@@ -11,10 +11,11 @@ import Buttons from "../../Components/Layouts/ArticleFormLayout/Buttons/Buttons"
 const ArticleForm = () => {
   const { action, articleId } = useParams();
   const privateAxios = UsePrivateAxios();
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [content, setContent] = useState("");
-  const [published, setPublished] = useState(false);
+  const [published, setPublished] = useState(true);
   const [articleToEdit, setArticleToEdit] = useState({});
 
   const onCreatePage = () => {
@@ -24,18 +25,24 @@ const ArticleForm = () => {
   const handleSubmitForm = async (e) => {
     e.preventDefault();
 
-    onCreatePage()
-      ? await createArticle(privateAxios, {
-          title,
-          description,
-          content,
-          published,
-        })
-      : await updateArticle(
-          privateAxios,
-          { ...articleToEdit, title, description, content, published },
-          articleId
-        );
+    try {
+      onCreatePage()
+        ? await createArticle(privateAxios, {
+            title,
+            description,
+            content,
+            published,
+          })
+        : await updateArticle(
+            privateAxios,
+            { ...articleToEdit, title, description, content, published },
+            articleId
+          );
+
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -43,6 +50,10 @@ const ArticleForm = () => {
       (async () => {
         let article = await getArticleById(articleId);
         setArticleToEdit(article);
+        setTitle(article.title);
+        setDescription(article.description);
+        setContent(article.content);
+        setPublished(article.published);
       })();
   }, []);
 
@@ -58,7 +69,7 @@ const ArticleForm = () => {
               type="text"
               placeholder="Article title her...
               "
-              value={!onCreatePage() ? articleToEdit.title : title}
+              value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
@@ -66,14 +77,11 @@ const ArticleForm = () => {
             <input
               type="text"
               placeholder="short description of your article here..."
-              value={!onCreatePage() ? articleToEdit.description : description}
+              value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
-          <Editor
-            value={onCreatePage() ? content : articleToEdit.content}
-            setValue={setContent}
-          />
+          <Editor value={content} setValue={setContent} />
           <Buttons
             action={action}
             articleIsPublished={articleToEdit.published}

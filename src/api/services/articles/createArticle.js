@@ -4,7 +4,7 @@ const createArticle = async (privateAxios, article) => {
 
     console.log(response.data);
   } catch (err) {
-    console.log(err);
+    throw err;
   }
 };
 
