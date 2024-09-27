@@ -6,7 +6,7 @@ import style from "./Editor.module.css";
 const Editor = ({ value, setValue }) => {
   const modules = {
     toolbar: [
-      [{ header: "1" }, { header: "2" }, { font: [] }],
+      [{ header: "2" }, { font: [] }],
       [{ size: [] }],
       ["bold", "italic", "underline", "strike", "blockquote"],
       [
@@ -26,7 +26,7 @@ const Editor = ({ value, setValue }) => {
       value={value}
       onChange={setValue}
       placeholder="Write your article content here..."
-      style={{ width: "100%", height: "100%", textAlign: "left" }}
+      style={{ width: "100%", height: "40vh", textAlign: "left" }}
       className={style.editor}
     />
   );

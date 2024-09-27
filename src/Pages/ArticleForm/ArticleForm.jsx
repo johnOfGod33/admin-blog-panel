@@ -7,6 +7,8 @@ import createArticle from "../../api/services/articles/createArticle";
 import getArticleById from "../../api/services/articles/getArticleById";
 import updateArticle from "../../api/services/articles/updateArticle";
 import Buttons from "../../Components/Layouts/ArticleFormLayout/Buttons/Buttons";
+import CustomButton from "../../Components/CustomButton/CustomButton";
+import Preview from "../../Components/Layouts/ArticleFormLayout/Preview/Preview";
 
 const ArticleForm = () => {
   const { action, articleId } = useParams();
@@ -17,7 +19,7 @@ const ArticleForm = () => {
   const [content, setContent] = useState("");
   const [published, setPublished] = useState(true);
   const [articleToEdit, setArticleToEdit] = useState({});
-
+  const [previewActive, setPreviewActive] = useState(false);
   const onCreatePage = () => {
     return action === "Create";
   };
@@ -62,33 +64,46 @@ const ArticleForm = () => {
       <section className={style.title}>
         <h4> {action} article </h4>
       </section>
-      <section className={style.form}>
-        <form onSubmit={handleSubmitForm}>
-          <div className={style.form_title}>
-            <input
-              type="text"
-              placeholder="Article title her...
-              "
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </div>
-          <div className={style.form_description}>
-            <input
-              type="text"
-              placeholder="short description of your article here..."
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </div>
-          <Editor value={content} setValue={setContent} />
-          <Buttons
-            action={action}
-            articleIsPublished={articleToEdit.published}
-            setPublished={setPublished}
-          />
-        </form>
+      <section>
+        <CustomButton
+          handleClick={() => setPreviewActive((prevstate) => !prevstate)}
+        >
+          {previewActive ? "Edit" : "Preview"}
+        </CustomButton>
       </section>
+      {previewActive ? (
+        <section>
+          <Preview title={title} content={content} />
+        </section>
+      ) : (
+        <section className={style.form}>
+          <form onSubmit={handleSubmitForm}>
+            <div className={style.form_title}>
+              <input
+                type="text"
+                placeholder="Article title her...
+              "
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </div>
+            <div className={style.form_description}>
+              <input
+                type="text"
+                placeholder="short description of your article here..."
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </div>
+            <Editor value={content} setValue={setContent} />
+            <Buttons
+              action={action}
+              articleIsPublished={articleToEdit.published}
+              setPublished={setPublished}
+            />
+          </form>
+        </section>
+      )}
     </div>
   );
 };
