@@ -36,8 +36,16 @@ const SignUp = () => {
             onSubmit={(e) => handleSubmitForm(e, username, email, password)}
           >
             <CustomInput placeholder={"Username"} setState={setUsername} />
-            <CustomInput placeholder={"Email"} setState={setEmail} />
-            <CustomInput placeholder={"Password"} setState={setPassword} />
+            <CustomInput
+              type={"email"}
+              placeholder={"Email"}
+              setState={setEmail}
+            />
+            <CustomInput
+              type="password"
+              placeholder={"Password"}
+              setState={setPassword}
+            />
             <CustomButton>Sign Up</CustomButton>
           </form>
         </section>

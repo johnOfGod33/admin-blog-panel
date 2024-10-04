@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import CustomButtom from "../../Components/CustomButton/CustomButton";
 import style from "./Articles.module.css";
 import ArticlesList from "../../Components/Layouts/ArticleLayout/ArticlesList/ArticlesList";

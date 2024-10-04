@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import style from "./MenuIcon.module.scss";
 const MenuIcon = ({ menuIsOpen, setMenuIsOpen }) => {
   const toggleMenu = () => {

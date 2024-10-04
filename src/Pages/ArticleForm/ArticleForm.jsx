@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import style from "./ArticleForm.module.css";
 import { useNavigate, useParams } from "react-router-dom";
-import Editor from "../../Components/Layouts/ArticleFormLayout/Editor/Editor";
 import UsePrivateAxios from "../../Hooks/UsePrivateAxios";
 import createArticle from "../../api/services/articles/createArticle";
 import getArticleById from "../../api/services/articles/getArticleById";
 import updateArticle from "../../api/services/articles/updateArticle";
 import Buttons from "../../Components/Layouts/ArticleFormLayout/Buttons/Buttons";
-import CustomButton from "../../Components/CustomButton/CustomButton";
-import Preview from "../../Components/Layouts/ArticleFormLayout/Preview/Preview";
+import TinyEditor from "../../Components/Layouts/ArticleFormLayout/TinyEditor/TinyEditor";
 
 const ArticleForm = () => {
   const { action, articleId } = useParams();
@@ -19,7 +17,6 @@ const ArticleForm = () => {
   const [content, setContent] = useState("");
   const [published, setPublished] = useState(true);
   const [articleToEdit, setArticleToEdit] = useState({});
-  const [previewActive, setPreviewActive] = useState(false);
   const onCreatePage = () => {
     return action === "Create";
   };
@@ -64,46 +61,33 @@ const ArticleForm = () => {
       <section className={style.title}>
         <h4> {action} article </h4>
       </section>
-      <section>
-        <CustomButton
-          handleClick={() => setPreviewActive((prevstate) => !prevstate)}
-        >
-          {previewActive ? "Edit" : "Preview"}
-        </CustomButton>
-      </section>
-      {previewActive ? (
-        <section>
-          <Preview title={title} content={content} />
-        </section>
-      ) : (
-        <section className={style.form}>
-          <form onSubmit={handleSubmitForm}>
-            <div className={style.form_title}>
-              <input
-                type="text"
-                placeholder="Article title her...
+      <section className={style.form}>
+        <form onSubmit={handleSubmitForm}>
+          <div className={style.form_title}>
+            <input
+              type="text"
+              placeholder="Article title her...
               "
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            </div>
-            <div className={style.form_description}>
-              <input
-                type="text"
-                placeholder="short description of your article here..."
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              />
-            </div>
-            <Editor value={content} setValue={setContent} />
-            <Buttons
-              action={action}
-              articleIsPublished={articleToEdit.published}
-              setPublished={setPublished}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
-          </form>
-        </section>
-      )}
+          </div>
+          <div className={style.form_description}>
+            <input
+              type="text"
+              placeholder="short description of your article here..."
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+          <TinyEditor content={content} setContent={setContent} />
+          <Buttons
+            action={action}
+            articleIsPublished={articleToEdit.published}
+            setPublished={setPublished}
+          />
+        </form>
+      </section>
     </div>
   );
 };

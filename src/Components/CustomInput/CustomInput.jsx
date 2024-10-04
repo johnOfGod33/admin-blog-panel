@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./CustomInput.module.css";
 
-const CustomInput = ({ type, placeholder, setState, value }) => {
+const CustomInput = ({ type, placeholder, setState }) => {
   return (
     <input
       required

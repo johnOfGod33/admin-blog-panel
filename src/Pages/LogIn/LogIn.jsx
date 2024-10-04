@@ -35,8 +35,16 @@ const LogIn = () => {
         </section>
         <section className={style.form}>
           <form onSubmit={(e) => handleSubmitForm(e, email, password)}>
-            <CustomInput placeholder={"Email"} setState={setEmail} />
-            <CustomInput placeholder={"Password"} setState={setPassword} />
+            <CustomInput
+              type="email"
+              placeholder={"Email"}
+              setState={setEmail}
+            />
+            <CustomInput
+              type="password"
+              placeholder={"Password"}
+              setState={setPassword}
+            />
             <CustomButton>Log In</CustomButton>
           </form>
         </section>
