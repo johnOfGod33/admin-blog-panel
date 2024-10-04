@@ -13,7 +13,7 @@ const TinyEditor = ({ content, setContent }) => {
         onChange={() => setContent(editorRef.current.getContent())}
         initialValue={content}
         init={{
-          height: 500,
+          height: 350,
           width: "100%",
           menubar: false,
           plugins: [
