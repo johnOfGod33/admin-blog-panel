@@ -6,6 +6,8 @@ A web application that allows users to create and manage blog posts. this also t
 
 ![alt text](src/assets/img/article_form.png)
 
+![alt text](src/assets/img/preview.png)
+
 ## FEATURES
 
 - **User Authentication and Authorization**: Secure sign up and login

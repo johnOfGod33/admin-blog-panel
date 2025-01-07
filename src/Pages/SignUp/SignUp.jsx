@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CustomInput from "../../Components/CustomInput/CustomInput";
 import CustomButton from "../../Components/CustomButton/CustomButton";
+import CustomInput from "../../Components/CustomInput/CustomInput";
 import signupUser from "../../api/services/users/signupUser";
 import style from "./SignUp.module.css";
 
@@ -25,36 +25,46 @@ const SignUp = () => {
   return (
     <div className={style.body}>
       <div className={style.container}>
-        <section>
-          <h3>Sign Up</h3>
-        </section>
-        <section>
-          <p>Complete the form and create your account</p>
-        </section>
-        <section className={style.form}>
-          <form
-            onSubmit={(e) => handleSubmitForm(e, username, email, password)}
-          >
-            <CustomInput placeholder={"Username"} setState={setUsername} />
+        <div className={style.header}>
+          <h2>Create Account</h2>
+          <p className={style.subtitle}>
+            Complete the form to start your journey
+          </p>
+        </div>
+
+        <form
+          className={style.form}
+          onSubmit={(e) => handleSubmitForm(e, username, email, password)}
+        >
+          <div className={style.inputGroup}>
             <CustomInput
-              type={"email"}
-              placeholder={"Email"}
+              placeholder="Username"
+              setState={setUsername}
+              icon="user"
+            />
+            <CustomInput
+              type="email"
+              placeholder="Email"
               setState={setEmail}
+              icon="email"
             />
             <CustomInput
               type="password"
-              placeholder={"Password"}
+              placeholder="Password"
               setState={setPassword}
+              icon="lock"
             />
-            <CustomButton>Sign Up</CustomButton>
-          </form>
-        </section>
-        <section>
-          <p>
-            Already have account ?{" "}
-            <span onClick={() => navigation("/login")}>Log In</span>
-          </p>
-        </section>
+          </div>
+
+          <CustomButton className={style.submitButton}>
+            Create Account
+          </CustomButton>
+        </form>
+
+        <p className={style.loginLink}>
+          Already have an account?{" "}
+          <span onClick={() => navigation("/login")}>Sign In</span>
+        </p>
       </div>
     </div>
   );
